@@ -1,0 +1,88 @@
+{
+    "groups": {
+        "1": {
+            "name": "Group 1",
+            "id": "1",
+            "members": {
+                "heyellieday": {
+                    "name": "Ellie",
+                    "id": "1",
+                    "bio": "Here for 10 hours",
+                    "profileImg": "https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-ash4/t1.0-9/10153765_1403043279972803_7769249082470726667_n.jpg",
+                    "status": "in",
+                    "username": "heyellieday",
+                    "distance": "Currently home."
+                },
+                "vijay": {
+                    "name": "Vijay",
+                    "id": "2",
+                    "bio": "Here for 2 hours",
+                    "profileImg": "https://lh4.googleusercontent.com/-k8mKIvx7y_o/Thm9E_mN5pI/AAAAAAAACYM/WLOXHeBQwKI/w268-h267-no/100_1606.JPG.jpg",
+                    "status": "in",
+                    "username": "vijay",
+                    "distance": "Currently home."
+                },
+                "kate": {
+                    "name": "Kate",
+                    "id": "3",
+                    "bio": "Last here 3 hours ago",
+                    "profileImg": "https://scontent-b.xx.fbcdn.net/hphotos-prn2/t1.0-9/p720x720/1175613_10201864662124380_658618106_n.jpg",
+                    "status": "out",
+                    "username": "kate",
+                    "distance": "20 minutes from home."
+                },
+                "kate2": {
+                    "name": "Kate",
+                    "id": "3",
+                    "bio": "Last here 3 hours ago",
+                    "profileImg": "https://scontent-b.xx.fbcdn.net/hphotos-prn2/t1.0-9/p720x720/1175613_10201864662124380_658618106_n.jpg",
+                    "status": "out",
+                    "username": "kate",
+                    "distance": "20 minutes from home."
+                }
+            }
+        },
+        "2": {
+            "name": "Group 2",
+            "id": "2",
+            "members": {
+                "heyellieday": {
+                    "name": "Not Ellie",
+                    "id": "1",
+                    "bio": "Here for 10 hours",
+                    "profileImg": "https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-ash4/t1.0-9/10153765_1403043279972803_7769249082470726667_n.jpg",
+                    "status": "in",
+                    "username": "heyellieday",
+                    "distance": "Currently home."
+                },
+                "vijay": {
+                    "name": "Not Vijay",
+                    "id": "2",
+                    "bio": "Here for 2 hours",
+                    "profileImg": "https://lh4.googleusercontent.com/-k8mKIvx7y_o/Thm9E_mN5pI/AAAAAAAACYM/WLOXHeBQwKI/w268-h267-no/100_1606.JPG.jpg",
+                    "status": "in",
+                    "username": "vijay",
+                    "distance": "Currently home."
+                },
+                "kate": {
+                    "name": "Not Kate",
+                    "id": "3",
+                    "bio": "Last here 3 hours ago",
+                    "profileImg": "https://scontent-b.xx.fbcdn.net/hphotos-prn2/t1.0-9/p720x720/1175613_10201864662124380_658618106_n.jpg",
+                    "status": "out",
+                    "username": "kate",
+                    "distance": "20 minutes from home."
+                },
+                "kate2": {
+                    "name": "Not Kate",
+                    "id": "3",
+                    "bio": "Last here 3 hours ago",
+                    "profileImg": "https://scontent-b.xx.fbcdn.net/hphotos-prn2/t1.0-9/p720x720/1175613_10201864662124380_658618106_n.jpg",
+                    "status": "out",
+                    "username": "kate",
+                    "distance": "20 minutes from home."
+                }
+            }
+        }
+    }
+}

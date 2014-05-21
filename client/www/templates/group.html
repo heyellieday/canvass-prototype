@@ -1,0 +1,20 @@
+<ion-view title="{{group.name}}">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header">
+      <div class="card">
+  <div class="item item-text-wrap">
+    <h1 style="text-align:center;color:#4CD964">Someone is home.</h1>
+  </div>
+</div>
+    <ion-list>
+        <a ng-repeat="member in members" href="#/app/group/{{member.username}}" class="item item-thumbnail-left" href="#">
+      <img class="{{member.status}}" src="{{member.profileImg}}">
+      <h2>{{member.name}}</h2>
+      <p>{{member.distance}}</p>
+      <p><strong>{{member.bio}}</strong></p>
+    </a>
+    </ion-list>
+  </ion-content>
+</ion-view>

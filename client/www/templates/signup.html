@@ -1,0 +1,26 @@
+<ion-view title="Roomio">
+  <ion-content class = "signup">
+    <form class="list list-inset">
+      <span ng-show="emailRequired">{{emailRequired}}</span>
+      <span ng-show="passwordRequired">{{passwordRequired}}</span>
+      <label class="item item-input">
+        <input type="text" placeholder="Email" ng-model="formInfo.Email">
+      </label>
+      <label class="item item-input">
+        <input type="password" placeholder="Password" ng-model="formInfo.Password">
+      </label>
+      <button type="submit" ng-click="saveData()" class="button button-block button-energized">
+        Sign up
+       </button>
+        <button type="submit" ng-click="saveData()" class="button button-block button-positive">
+        Sign up with Facebook
+       </button>
+        <button class="button button-clear button-block button-balanced">
+          Learn more
+        </button>
+       <button class="button button-clear button-block button-positive">
+          Sign in
+        </button>
+    </form>
+  </ion-content>
+</ion-view>
