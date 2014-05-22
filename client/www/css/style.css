@@ -55,6 +55,11 @@ border-color:#FF3B30;}
   box-sizing: border-box;
   border-radius: 4px;
   -webkit-animation-fill-mode: forwards;
+  max-height: 100%;
+}
+
+.cover{
+  max-height: 50%;
 }
 
 .swipe-card .title {

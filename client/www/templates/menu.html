@@ -9,18 +9,15 @@
 
   <ion-side-menu side="left">
     <header class="bar bar-header bar-stable">
-      <h1 class="title">Roommio</h1>
+      <h1 class="title">Canvass</h1>
     </header>
     <ion-content class="has-header">
       <ion-list>
+        <ion-item nav-clear menu-close href="#/app/browse">
+          Discovery Feed
+        </ion-item>
         <ion-item nav-clear menu-close href="#/app/profile">
-          Profile
-        </ion-item>
-        <ion-item ng-repeat="group in groups" nav-clear menu-close href="#/app/groups/{{group.id}}">
-          {{group.name}}
-        </ion-item>
-        <ion-item nav-clear menu-close href="#/app/settings">
-          Settings
+          Interests
         </ion-item>
       </ion-list>
     </ion-content>
