@@ -104,20 +104,57 @@ angular.module('starter.controllers', [])
 
 .controller('CardsCtrl', function($scope, $ionicSwipeCardDelegate) {
 
-
    fbEnsureInit(function() {
+      var brands = ["Google", "lyft", "zulily"];
+      var cardTypes = [];
+      brands.forEach(createCards);
 
-      var title;
-      FB.api(
-          "/v1.0/Google",
+      function createCards(element, index, array) {
+          FB.api(
+          "/v1.0/" + element,
           function (response) {
-            if (response && !response.error) {
-             title = response['name'];
-            console.log(response['name']);
-            }
+              if (response && !response.error) {
+
+               var title = response['name'];
+               var cover = response.cover.source;
+               var profilePic;
+               var likes = response.likes +" likes";
+               var about = response.about;
+                console.log(response);
+                console.log(title);
+
+                FB.api(
+                 "/"+title+ "/picture",
+                  function (response) {
+                    if (response && !response.error) {
+                      profilePic = response.data.url;
+                       console.log(profilePic);
+                      cardTypes.push({ title: title, image: cover, likes: likes, profilePic: profilePic, about: about  });
+
+                      $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
+
+                      $scope.cardSwiped = function(index) {
+                        $scope.addCard();
+                      };
+
+                      $scope.cardDestroyed = function(index) {
+                        $scope.cards.splice(index, 1);
+                      };
+
+                      $scope.addCard = function() {
+                        var newCard = cardTypes[Math.floor(Math.random() * cardTypes.length)];
+                        newCard.id = Math.random();
+                        $scope.cards.push(angular.extend({}, newCard));
+                      }
+                    
+                    }
+                  }
+                );
+              }
           }
-      );
-  });
+        );
+      }
+    })
 })
 
 .controller('CardCtrl', function($scope, $ionicSwipeCardDelegate) {

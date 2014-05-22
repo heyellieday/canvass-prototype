@@ -24,7 +24,6 @@ border-color:#FF3B30;}
 }
 
 .pane {
-  background-color: #333;
 }
 
 .bar.bar-transparent {
@@ -38,23 +37,23 @@ border-color:#FF3B30;}
 }
 
 .swipe-cards {
-  position: fixed;
+}
+
+
+.about {
+  text-align: center;
 }
 
 .swipe-card {
-  display: none;
-  position: fixed;
+
   -webkit-transform: scale(1,1);
-  left: 50%;
-  top: 50%;
-  width: 300px;
-  height: 300px;
-  margin-left: -150px;
-  margin-top: -150px;
+  width: 100%;
+  top:10%;
+  padding-right: 10px;
+  padding-left: 0px;
+  position: fixed;
   box-sizing: border-box;
-  background-color: rgb(255,255,255);
   border-radius: 4px;
-  overflow: hidden;
   -webkit-animation-fill-mode: forwards;
 }
 
