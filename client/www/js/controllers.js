@@ -105,7 +105,7 @@ angular.module('starter.controllers', [])
 .controller('CardsCtrl', function($scope, $ionicSwipeCardDelegate) {
 
    fbEnsureInit(function() {
-      var brands = ["Google", "lyft", "zulily", "airbnb", "elliegoulding", "starbucks", "Lysol"];
+      var brands = ["Google", "lyft", "zulily", "airbnb", "elliegoulding", "starbucks", "Lysol", "cocacola"];
       var cardTypes = [];
       brands.forEach(createCards);
 
