@@ -165,20 +165,49 @@
     /**
      * Swipe a card out programtically
      */
-    swipe: function() {
-      this.transitionOut();
+    swipe: function(isClick, decision) {
+      this.transitionOut(isClick, decision);
     },
 
     /**
      * Fly the card out or animate back into resting position.
      */
-    transitionOut: function() {
+    transitionOut: function(isClick, decision) {
       var self = this;
       center = (window.innerWidth / 2);
       twelve = (window.innerWidth / 12);
       console.log("eighth " + twelve);
       console.log("x " + this.x);
       console.log("y " + this.y);
+
+      if (isClick) {
+        if(decision == "yes" || decision == "canvass" ) {
+        // Fly out
+        var rotateTo = (this.rotationAngle + (this.rotationDirection * 0.6)) || (Math.random() * 0.4);
+        var duration = this.rotationAngle ? 0.2 : 0.5;
+        this.el.style[TRANSITION] = '-webkit-transform ' + duration + 's ease-in-out';
+        this.el.style[ionic.CSS.TRANSFORM] = 'translate3d(' + '-500px' + ',' + '1000' + 'px, 0) rotate(' + rotateTo + 'rad)';
+        this.onSwipe && this.onSwipe();
+
+        // Trigger destroy after card has swiped out
+        setTimeout(function() {
+          self.onDestroy && self.onDestroy();
+        }, duration * 1000);
+      } if (decision == "no" )  {
+        // Fly out
+        var rotateTo = (this.rotationAngle + (this.rotationDirection * 0.6)) || (Math.random() * 0.4);
+        var duration = this.rotationAngle ? 0.2 : 0.5;
+        this.el.style[TRANSITION] = '-webkit-transform ' + duration + 's ease-in-out';
+        this.el.style[ionic.CSS.TRANSFORM] = 'translate3d(' + '500px' + ',' + '1000' + 'px, 0) rotate(' + rotateTo + 'rad)';
+        this.onSwipe && this.onSwipe();
+
+        // Trigger destroy after card has swiped out
+        setTimeout(function() {
+          self.onDestroy && self.onDestroy();
+        }, duration * 1000);
+      }        
+
+      }
 
       if(this.x <= (-twelve) ) {
         // Fly out
@@ -220,7 +249,7 @@
       var self = this;
       ionic.onGesture('dragstart', function(e) {
         var cx = window.innerWidth / 2;
-        if(e.gesture.touches[0].pageX < cx) {
+        if(e.gesture.touches[0].pageY < cx) {
           self._transformOriginRight();
         } else {
           self._transformOriginLeft();
@@ -250,8 +279,9 @@
 
     _doDragStart: function(e) {
       var width = this.el.offsetWidth;
+      console.log(width);
       var point = window.innerWidth / 2 + this.rotationDirection * (width / 2)
-      var distance = Math.abs(point - e.gesture.touches[0].pageY);// - window.innerWidth/2);
+      var distance = Math.abs(point - e.gesture.touches[0].pageX);// - window.innerWidth/2);
       console.log(distance);
 
       this.touchDistance = distance * 10;

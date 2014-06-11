@@ -1,25 +1,95 @@
-<ion-side-menus>
+<ion-tabs class="tabs-positive tabs-icon-top">
+  <ion-tab title="Discover" icon-on="ion-ios7-photos" icon-off="ion-ios7-photos-outline">
+    <ion-view ng-controller="CardsCtrl" title="Discovery Feed">
+    <ion-header-bar class="bar-positive">
+      <h1 class="title">Discover</h1>
+      <div class="buttons">
+        <button class="button"><i class="icon ion-ios7-gear"></i></button>
+      </div>
+    </ion-header-bar>
+      <div class="row">
+        <div class="col">
+          <swipe-cards>
+            <swipe-card on-swipe="cardSwiped()">
+               <div class="wholeCard" ng-controller="CardCtrl">
+                <div class="list card">
+                  <div class="item item-avatar">
+                    <img ng-src="{{card.profilePic}}">
+                    <h2>{{card.title}}</h2>
+                    <p>{{card.likes}}</p>
+                  </div>
+                  <div class="item item-body">
+                    <div class="cropImg">
+                      <img class="full-image cover" ng-src="{{card.image}}">
+                    </div>
+                    <h2 class="subdued about">
+                      {{card.about}}
+                    </h2>
+                  </div>
+                  <div class="button-bar">
+                     <button class="button button-assertive icon ion-close-round button" ng-click="decide('no', '{{card.title}}')"></button>
+                    <button class="button button-energized" ng-click="decide('canvass', '{{card.title}}' )">Canvass</button>
+                    <button class="button button-balanced icon ion-checkmark-round button" ng-click="decide('yes', '{{card.title}}')"></button>
+                  </div>
+                </div>
+              </div>
+            </swipe-card>
+            <swipe-card ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-swipe="cardSwiped($index)">
+              <div class="wholeCard" ng-controller="CardCtrl">
+                <div class="list card">
+                  <div class="item item-avatar">
+                    <img ng-src="{{card.profilePic}}">
+                    <h2>{{card.title}}</h2>
+                    <p>{{card.likes}}</p>
+                  </div>
+                  <div class="item item-body">
+                    <div class="cropImg">
+                      <img class="full-image cover" ng-src="{{card.image}}">
+                    </div>
+                    <h2 class="subdued about">
+                      {{card.about}}
+                    </h2>
+                  </div>
+                  <div class="button-bar">
+                     <button class="button button-assertive icon ion-close-round button" ng-click="decide('no', '{{card.title}}')"></button>
+                    <button class="button button-energized" ng-click="decide('canvass', '{{card.title}}' )">Canvass</button>
+                    <button class="button button-balanced icon ion-checkmark-round button" ng-click="decide('yes', '{{card.title}}')"></button>
+                  </div>
+                </div>
+              </div>
+            </swipe-card>
+          </swipe-cards>
+        </div>
+      </div>
+    </ion-view>
+  </ion-tab>
 
-  <ion-pane ion-side-menu-content>
-    <ion-nav-bar class="bar-stable nav-title-slide-ios7">
-      <ion-nav-back-button class="button-clear"><i class="icon ion-chevron-left"></i> Back</ion-nav-back-button>
-    </ion-nav-bar>
-    <ion-nav-view name="menuContent" animation="slide-left-right"></ion-nav-view>
-  </ion-pane>
+  <ion-tab title="Nearby" icon-on="ion-ios7-location" icon-off="ion-ios7-location-outline">
+    <ion-header-bar class="bar-positive">
+      <h1 class="title">Nearby</h1>
+      <div class="buttons">
+        <button class="button"><i class="icon ion-ios7-gear"></i></button>
+      </div>
+    </ion-header-bar>
+    <iframe class="map" width="100%" height="87%" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=Starbucks%20Coffee%2C%20Chicago%2C%20IL%2C%20United%20States&key=AIzaSyAgQLxpbBXaLOwJ-l7gBaFawiSihE-jAFY"></iframe>
+  </ion-tab>
 
-  <ion-side-menu side="left">
-    <header class="bar bar-header bar-stable">
-      <h1 class="title">Canvass</h1>
-    </header>
-    <ion-content class="has-header">
-      <ion-list>
-        <ion-item nav-clear menu-close href="#/app/browse">
-          Discovery Feed
-        </ion-item>
-        <ion-item nav-clear menu-close href="#/app/profile">
-          Interests
-        </ion-item>
-      </ion-list>
-    </ion-content>
-  </ion-side-menu>
-</ion-side-menus>
+  <ion-tab title="Interests" icon-on="ion-ios7-albums" icon-off="ion-ios7-albums-outline">
+    <ion-header-bar class="bar-positive">
+      <h1 class="title">Interests</h1>
+      <div class="buttons">
+        <button class="button"><i class="icon ion-ios7-gear"></i></button>
+      </div>
+    </ion-header-bar>
+  </ion-tab>
+
+  <ion-tab title="Connect" icon-on="ion-ios7-chatbubble" icon-off="ion-ios7-chatbubble-outline">
+    <ion-header-bar class="bar-positive">
+      <h1 class="title">Connect</h1>
+      <div class="buttons">
+        <button class="button"><i class="icon ion-ios7-gear"></i></button>
+      </div>
+    </ion-header-bar>
+  </ion-tab>
+
+</ion-tabs>

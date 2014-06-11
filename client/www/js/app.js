@@ -35,8 +35,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngTouch', 'ionic.con
     .state('app', {
       url: "/app",
       abstract: true,
-      templateUrl: "templates/menu.html",
-      controller: 'MenuCtrl'
+      templateUrl: "templates/menu.html"
     })
 
     .state('app.search', {

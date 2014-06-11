@@ -42,14 +42,14 @@
                       {{card.about}}
                     </h2>
                   </div>
-
-               <div class="button-bar">
-              <button class="button button-balanced icon ion-checkmark-round button-outline" ng-click="goAway()"></button>
-              <button class="button button-energized" ng-click="goAway()">Canvass</button>
-              <button class="button button-assertive icon ion-close-round button-outline" ng-click="goAway()"></button>
             </div>
+              <div class="button-bar">
+              <button class="button button-balanced icon ion-checkmark-round button" ng-click="decide('yes', '{{card.title}}')"></button>
+              <button class="button button-energized" ng-click="decide('canvass', '{{card.title}}' )">Canvass</button>
+              <button class="button button-assertive icon ion-close-round button" ng-click="decide('no', '{{card.title}}')"></button>
             </div>
             </swipe-card>
+
           </swipe-cards>
             </div>
           </div>

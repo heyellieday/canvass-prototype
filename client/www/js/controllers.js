@@ -4,103 +4,10 @@ angular.module('starter.controllers', [])
 })
 
 
-.controller('MemberCtrl', function($scope, $stateParams, $http) {
-    
-    $http.get('groups.json').success(function(data) {
-        members = data["members"];
-        $scope.member = members[$stateParams.memberUsername];
-    });
+.controller('UserModel', function($scope, $rootScope, $stateParams, $http) { 
 })
 
-.controller('GroupCtrl', function($scope, $http, $stateParams) {
-    $http.get('groups.json').success(function(data) {
-       if ($stateParams.groupId == "") {
-       
-       }else{
-            $scope.groups = data["groups"];
-            $scope.group = $scope.groups[$stateParams.groupId]; 
-            $scope.members = $scope.group["members"];
-       }
-    });
-})
 
-.controller('MenuCtrl', function($scope, $http, $stateParams) {
-    $http.get('groups.json').success(function(data) {
-        $scope.groups = data["groups"];
-    });
-})
-
-.controller('SignupCtrl', function($scope, $http, $state) {
-    
-    $scope.formInfo = {};
-    $scope.saveData = function() {
-        $scope.emailRequired = '';
-        $scope.passwordRequired = '';
-
-        if (!$scope.formInfo.Email) {
-            $scope.emailRequired = 'Email Required';
-          }
-
-          if (!$scope.formInfo.Password) {
-            $scope.passwordRequired = 'Password Required';
-         }
-        console.log($scope.formInfo);
-        $state.transitionTo('app.userInfo');
-    };
-})
-
-.controller('UserInfoCtrl', function($scope, $http, $state) {
-    
-    $scope.formInfo = {};
-    $scope.startGroup = function() {
-        $scope.nameRequired = '';
-
-        if (!$scope.formInfo.Name) {
-            $scope.emailName = 'Name Required';
-          }
-
-        console.log($scope.formInfo);
-        $state.transitionTo('app.startGroup');
-    };
-    $scope.joinGroup = function() {
-        $scope.nameRequired = '';
-
-        if (!$scope.formInfo.Name) {
-            $scope.emailName = 'Name Required';
-          }
-
-        console.log($scope.formInfo);
-        $state.transitionTo('app.joinGroup');
-    };
-})
-.controller('StartGroupCtrl', function($scope, $http, $state) {
-    
-    $scope.formInfo = {};
-    $scope.sendInvites = function() {
-        $scope.nameRequired = '';
-
-        if (!$scope.formInfo.Name) {
-            $scope.nameRequired = 'Name Required';
-          }
-
-        console.log($scope.formInfo);
-        $state.transitionTo('app.group');
-    };
-})
-.controller('JoinGroupCtrl', function($scope, $http, $state) {
-    
-    $scope.formInfo = {};
-    $scope.addToGroup = function() {
-        $scope.pinRequired = '';
-
-        if (!$scope.formInfo.Pin) {
-            $scope.pinRequired = 'Pin Required';
-          }
-
-        console.log($scope.formInfo);
-        $state.transitionTo('app.group');
-    };
-})
 
 .controller('CardsCtrl', function($scope, $ionicSwipeCardDelegate) {
 
@@ -131,6 +38,16 @@ angular.module('starter.controllers', [])
                        console.log(profilePic);
                       cardTypes.push({ title: title, image: cover, likes: likes, profilePic: profilePic, about: about  });
 
+                      FB.api(
+                       "/"+title+ "/likes",
+                        function (response) {
+                          if (response && !response.error) {
+                            likes = response;
+                             console.log(likes);
+                          }
+                        }
+                      );
+
                       $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
 
                       $scope.cardSwiped = function(index) {
@@ -157,9 +74,33 @@ angular.module('starter.controllers', [])
     })
 })
 
-.controller('CardCtrl', function($scope, $ionicSwipeCardDelegate) {
-  $scope.goAway = function() {
-    var card = $ionicSwipeCardDelegate.getSwipebleCard($scope);
-    card.swipe();
+.controller('CardCtrl', function($scope, $ionicSwipeCardDelegate, $rootScope ) {
+  $scope.decide = function(decision, title) {
+    $rootScope.interests = {};
+    $rootScope.interests.likes = {};
+     function canvass() {
+      $rootScope.interests.likes[title] = {isCanvassing: "true", title: title};
+      console.log("User is now canvassing for "+title );
+     }
+     function like() {
+      $rootScope.interests.likes[title] = {isCanvassing: "false", title: title};
+      console.log("User now likes "+title );
+     }
+     function dislike() {
+      console.log("User dislikes "+title );
+     }
+
+
+    if (decision == "canvass") {
+      canvass();
+    } else if (decision == "yes") {
+      like();
+    } else if (decision == "no") {
+        dislike();
+    } else {
+      console.log("No decision was made!");
+    }
+     var card = $ionicSwipeCardDelegate.getSwipebleCard($scope);
+    card.swipe(true, decision);
   };
 });
